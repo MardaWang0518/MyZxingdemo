@@ -98,8 +98,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             mTvResult.setText("扫码结果：" + result);
             showToast(result);
+            if(result.contains("https://")){
+                Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(result));
+                //建立Intent对象，传入uri
+                startActivity(intent);
+                return;
+            }
             if (bitmap != null) {
-                mImageCallback.setImageBitmap(bitmap);//现实扫码图片
+                mImageCallback.setImageBitmap(bitmap);//显示扫码图片
             }
         }
 
